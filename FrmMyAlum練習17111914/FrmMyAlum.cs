@@ -10,12 +10,13 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using FrmMyAlum練習17111914.Properties;
 using System.IO;
+using System.Drawing.Imaging;
 
 namespace FrmMyAlum練習17111914
 {
-    public partial class Form1 : Form
+    public partial class FrmMyAlum : Form
     {
-        public Form1()
+        public FrmMyAlum()
         {
             InitializeComponent();
         }
@@ -30,9 +31,12 @@ namespace FrmMyAlum練習17111914
                     phototable;", cn))
             {
                 var dt = new DataTable();
+
                 adp.Fill(dt);
+
                 var allRow = dt.NewRow();
                 allRow["PhotoType"] = "全部";
+
                 dt.Rows.InsertAt(allRow, 0);
 
                 lstPhotoType.DataSource = dt;
@@ -41,12 +45,14 @@ namespace FrmMyAlum練習17111914
 
         private void lstPhotoType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var photoType = (string)lstPhotoType.SelectedValue;
+            var photoType = lstPhotoType.SelectedValue;
+
             var sqlText = string.Empty;
 
             if (photoType == "全部")
             {
-                sqlText = @"select 
+                sqlText = @"
+                            select 
                                 Id, 
                                 Photo 
                             from 
@@ -54,7 +60,8 @@ namespace FrmMyAlum練習17111914
             }
             else
             {
-                sqlText = @"select 
+                sqlText = @"
+                            select 
                                 Id, 
                                 Photo 
                             from 
@@ -63,6 +70,7 @@ namespace FrmMyAlum練習17111914
                                 PhotoType =@type;";
 
             }
+
             using (var cn = new SqlConnection(Settings.Default.Photo))
             using (var adp = new SqlDataAdapter(sqlText, cn))
             {
@@ -88,7 +96,7 @@ namespace FrmMyAlum練習17111914
                 }
 
             }
-        } 
+        }
 
     }
 }   

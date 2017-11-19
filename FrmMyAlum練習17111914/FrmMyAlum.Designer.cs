@@ -1,6 +1,6 @@
 ﻿namespace FrmMyAlum練習17111914
 {
-    partial class Form1
+    partial class FrmMyAlum
     {
         /// <summary>
         /// 設計工具所需的變數。
@@ -118,12 +118,14 @@
             // 
             // lstPhotoType
             // 
+            this.lstPhotoType.DisplayMember = "PhotoType";
             this.lstPhotoType.FormattingEnabled = true;
             this.lstPhotoType.ItemHeight = 12;
             this.lstPhotoType.Location = new System.Drawing.Point(3, 19);
             this.lstPhotoType.Name = "lstPhotoType";
             this.lstPhotoType.Size = new System.Drawing.Size(183, 556);
             this.lstPhotoType.TabIndex = 2;
+            this.lstPhotoType.ValueMember = "PhotoType";
             this.lstPhotoType.SelectedIndexChanged += new System.EventHandler(this.lstPhotoType_SelectedIndexChanged);
             // 
             // lstPhoto
@@ -144,13 +146,13 @@
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // Form1
+            // FrmMyAlum
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(996, 644);
             this.Controls.Add(this.tabControl1);
-            this.Name = "Form1";
+            this.Name = "FrmMyAlum";
             this.Text = "Form1";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
