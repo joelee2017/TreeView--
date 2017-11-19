@@ -30,6 +30,13 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.FileDate = new System.Windows.Forms.Label();
+            this.FileType = new System.Windows.Forms.Label();
+            this.FileName = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.textType = new System.Windows.Forms.TextBox();
+            this.textName = new System.Windows.Forms.TextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.BtnClear = new System.Windows.Forms.Button();
             this.BtnDelete = new System.Windows.Forms.Button();
             this.BtnInsert = new System.Windows.Forms.Button();
@@ -38,8 +45,10 @@
             this.lstPhotoType = new System.Windows.Forms.ListBox();
             this.lstPhoto = new System.Windows.Forms.ListView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -55,6 +64,13 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.FileDate);
+            this.tabPage1.Controls.Add(this.FileType);
+            this.tabPage1.Controls.Add(this.FileName);
+            this.tabPage1.Controls.Add(this.dateTimePicker1);
+            this.tabPage1.Controls.Add(this.textType);
+            this.tabPage1.Controls.Add(this.textName);
+            this.tabPage1.Controls.Add(this.pictureBox1);
             this.tabPage1.Controls.Add(this.BtnClear);
             this.tabPage1.Controls.Add(this.BtnDelete);
             this.tabPage1.Controls.Add(this.BtnInsert);
@@ -70,6 +86,66 @@
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // FileDate
+            // 
+            this.FileDate.AutoSize = true;
+            this.FileDate.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FileDate.Location = new System.Drawing.Point(729, 159);
+            this.FileDate.Name = "FileDate";
+            this.FileDate.Size = new System.Drawing.Size(81, 19);
+            this.FileDate.TabIndex = 14;
+            this.FileDate.Text = "FileDate";
+            // 
+            // FileType
+            // 
+            this.FileType.AutoSize = true;
+            this.FileType.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FileType.Location = new System.Drawing.Point(729, 84);
+            this.FileType.Name = "FileType";
+            this.FileType.Size = new System.Drawing.Size(81, 19);
+            this.FileType.TabIndex = 13;
+            this.FileType.Text = "FileType";
+            // 
+            // FileName
+            // 
+            this.FileName.AutoSize = true;
+            this.FileName.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FileName.Location = new System.Drawing.Point(729, 19);
+            this.FileName.Name = "FileName";
+            this.FileName.Size = new System.Drawing.Size(81, 19);
+            this.FileName.TabIndex = 12;
+            this.FileName.Text = "FileName";
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(744, 195);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 22);
+            this.dateTimePicker1.TabIndex = 11;
+            // 
+            // textType
+            // 
+            this.textType.Location = new System.Drawing.Point(744, 119);
+            this.textType.Name = "textType";
+            this.textType.Size = new System.Drawing.Size(182, 22);
+            this.textType.TabIndex = 10;
+            // 
+            // textName
+            // 
+            this.textName.Location = new System.Drawing.Point(744, 45);
+            this.textName.Name = "textName";
+            this.textName.Size = new System.Drawing.Size(182, 22);
+            this.textName.TabIndex = 9;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(731, 250);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(217, 155);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 8;
+            this.pictureBox1.TabStop = false;
+            // 
             // BtnClear
             // 
             this.BtnClear.Location = new System.Drawing.Point(825, 494);
@@ -78,6 +154,7 @@
             this.BtnClear.TabIndex = 7;
             this.BtnClear.Text = "取消";
             this.BtnClear.UseVisualStyleBackColor = true;
+            this.BtnClear.Click += new System.EventHandler(this.BtnClear_Click);
             // 
             // BtnDelete
             // 
@@ -87,6 +164,7 @@
             this.BtnDelete.TabIndex = 6;
             this.BtnDelete.Text = "刪除";
             this.BtnDelete.UseVisualStyleBackColor = true;
+            this.BtnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
             // BtnInsert
             // 
@@ -96,6 +174,7 @@
             this.BtnInsert.TabIndex = 5;
             this.BtnInsert.Text = "新增";
             this.BtnInsert.UseVisualStyleBackColor = true;
+            this.BtnInsert.Click += new System.EventHandler(this.BtnInsert_Click);
             // 
             // BtnOpenFile
             // 
@@ -105,6 +184,7 @@
             this.BtnOpenFile.TabIndex = 4;
             this.BtnOpenFile.Text = "檔案";
             this.BtnOpenFile.UseVisualStyleBackColor = true;
+            this.BtnOpenFile.Click += new System.EventHandler(this.BtnOpenFile_Click);
             // 
             // BtnLoad
             // 
@@ -146,6 +226,10 @@
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
             // FrmMyAlum
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -156,6 +240,8 @@
             this.Text = "Form1";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -172,6 +258,14 @@
         private System.Windows.Forms.ListBox lstPhotoType;
         private System.Windows.Forms.ListView lstPhoto;
         private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Label FileDate;
+        private System.Windows.Forms.Label FileType;
+        private System.Windows.Forms.Label FileName;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.TextBox textType;
+        private System.Windows.Forms.TextBox textName;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

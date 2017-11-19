@@ -45,7 +45,7 @@ namespace FrmMyAlum練習17111914
 
         private void lstPhotoType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var photoType = lstPhotoType.SelectedValue;
+            var photoType = (string)lstPhotoType.SelectedValue;
 
             var sqlText = string.Empty;
 
@@ -98,5 +98,71 @@ namespace FrmMyAlum練習17111914
             }
         }
 
+        private void BtnOpenFile_Click(object sender, EventArgs e)
+        {
+            if(openFileDialog1.ShowDialog() ==DialogResult.OK)
+            {
+                pictureBox1.Image = Image.FromStream(openFileDialog1.OpenFile());
+                textName.Text = openFileDialog1.SafeFileName;
+            }
+        }
+
+        private void BtnInsert_Click(object sender, EventArgs e)
+        {
+            using (var cn = new SqlConnection(Settings.Default.Photo))
+            using (var cmd = new SqlCommand(@"
+                    INSERT INTO PhotoTable(PhotoDesc, 
+                                            PhotoDate,
+                                            PhotoType,
+                                            Photo)
+                                Values(@fileNAME,
+                                       @date,
+                                       @type,
+                                       @photo);", cn))
+            {
+                cmd.CommandType = CommandType.Text;
+
+                cmd.Parameters.Add("fileName", SqlDbType.NVarChar).Value = textName.Text;
+                cmd.Parameters.Add("type", SqlDbType.NVarChar).Value = textType.Text;
+                cmd.Parameters.Add("date", SqlDbType.DateTime).Value = dateTimePicker1.Text;
+
+                using (var ms = new MemoryStream())
+                {
+                    pictureBox1.Image.Save(ms, ImageFormat.Png);
+                    cmd.Parameters.Add("photo", SqlDbType.VarBinary).Value = ms.ToArray();
+
+                }
+                cn.Open();
+
+                MessageBox.Show("ok");
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        private void BtnDelete_Click(object sender, EventArgs e)
+        {
+            var selectItem = lstPhoto.SelectedItems.Cast<ListViewItem>().First();
+            var selectedID = int.Parse(selectItem.Text);
+
+            using (var cn = new SqlConnection(Settings.Default.Photo))
+            using (var cmd = new SqlCommand(@"
+                                DELETE PhotoTable
+                                where
+                                     Id =@id", cn))
+            {
+                cmd.Parameters.Add("id", SqlDbType.Int).Value = selectedID;
+
+                cn.Open();
+                cmd.ExecuteNonQuery();
+            }
+                            
+        }
+
+        private void BtnClear_Click(object sender, EventArgs e)
+        {
+            this.textName.Text = "";
+            this.textType.Text = "";
+            this.pictureBox1.Image = null;
+        }
     }
 }   
